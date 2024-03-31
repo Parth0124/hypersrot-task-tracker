@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react"; // Import useState and useEffect
-import EditTask from "../components/EditTask"; // Import EditTask component
-import DeleteTask from "../components/DeleteTask"; // Import DeleteTask component
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import EditTask from "../components/EditTask";
+import { removeTodos } from "../redux/reducer"; // Import the removeTodos action
+import DeleteTask from "../components/DeleteTask";
 
 const TodoItem = (props) => {
   const [showOptions, setShowOptions] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [taskStatus, setTaskStatus] = useState(props.item.status);
-  const [buttonText, setButtonText] = useState("Assign"); // State for button text
 
   const { item, removeTodo } = props;
 
@@ -26,32 +27,60 @@ const TodoItem = (props) => {
     setShowDeleteConfirmation(false);
   };
 
-  useEffect(() => {
-    // Update buttonText based on taskStatus
+  const handleAssign = () => {
+    if (taskStatus !== "pending") {
+      switch (taskStatus) {
+        case "completed":
+          setTaskStatus("progress");
+          break;
+        case "progress":
+          setTaskStatus("deployed");
+          break;
+        case "deployed":
+          setTaskStatus("deferred");
+          break;
+        case "deferred":
+          setTaskStatus("completed");
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  const getButtonColorClass = () => {
+    if (taskStatus === "pending") {
+      return "btn btn-info"; // Green color for pending status
+    }
+    switch (taskStatus) {
+      case "completed":
+        return "btn btn-success";
+      case "progress":
+        return "btn btn-warning";
+      case "deployed":
+        return "btn btn-primary";
+      case "deferred":
+        return "btn btn-secondary";
+      default:
+        return "btn btn-success";
+    }
+  };
+
+  const getButtonText = () => {
     switch (taskStatus) {
       case "pending":
-        setButtonText("Assign");
-        break;
+        return "Assign";
       case "completed":
-        setButtonText("Completed");
-        break;
+        return "Completed";
       case "progress":
-        setButtonText("In Progress");
-        break;
+        return "In Progress";
       case "deployed":
-        setButtonText("Deployed");
-        break;
+        return "Deployed";
       case "deferred":
-        setButtonText("Deferred");
-        break;
+        return "Deferred";
       default:
-        setButtonText("Assign");
-        break;
+        return "Assign";
     }
-  }, [taskStatus]);
-
-  const handleStatusChange = (newStatus) => {
-    setTaskStatus(newStatus);
   };
 
   return (
@@ -101,34 +130,20 @@ const TodoItem = (props) => {
         </div>
       </div>
       <div>
-        <div>
-          <button
-            type="button"
-            className={`btn btn-sm mt-3 ${
-              taskStatus === "completed"
-                ? "btn-success"
-                : taskStatus === "progress"
-                ? "btn-warning"
-                : taskStatus === "deployed"
-                ? "btn-primary"
-                : taskStatus === "deferred"
-                ? "btn-secondary"
-                : taskStatus === "pending"
-                ? "btn-info" // Use btn-info class when taskStatus is "pending"
-                : "btn-success" // Default color when taskStatus is unknown
-            } ${taskStatus !== "pending" && "disabled"}`}
-          >
-            {buttonText}
-          </button>
-        </div>
+        <button
+          type="button"
+          className={`${getButtonColorClass()} btn-sm mt-3`}
+          onClick={handleAssign}
+          disabled={taskStatus === "pending"}
+        >
+          {getButtonText()}
+        </button>
       </div>
-
       {showEditModal && (
         <EditTask
           item={item}
           handleClose={() => setShowEditModal(false)}
           showEditModal={showEditModal}
-          handleStatusChange={handleStatusChange}
         />
       )}
       {/* Confirmation modal for delete */}
@@ -144,4 +159,10 @@ const TodoItem = (props) => {
   );
 };
 
-export default TodoItem;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeTodo: (id) => dispatch(removeTodos(id)), // Dispatch the removeTodos action with the task id
+  };
+};
+
+export default connect(null, mapDispatchToProps)(TodoItem);

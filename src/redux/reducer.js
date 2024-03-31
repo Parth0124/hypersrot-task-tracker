@@ -50,4 +50,3 @@ const todoSlice = createSlice({
 export const { addTodos, removeTodos, updateTodos, completeTodos, progressTodos, deployTodos, deferTodos } = todoSlice.actions;
 
 export default todoSlice.reducer;
-

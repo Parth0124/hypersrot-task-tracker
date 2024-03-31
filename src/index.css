@@ -59,3 +59,8 @@ code {
    overflow: scroll;
   }
 }
+
+.custom-icon:hover {
+  fill: #343a40; /* Dark color for hover effect */
+}
+
