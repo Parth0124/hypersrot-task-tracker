@@ -9,7 +9,7 @@ const TodoItem = (props) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [taskStatus, setTaskStatus] = useState(props.item.status);
-
+  const [completedByDate, setCompletedByDate] = useState(""); // New state for completed by date
 
   const { item, removeTodo } = props;
 
@@ -19,42 +19,41 @@ const TodoItem = (props) => {
   };
 
   const handleDelete = () => {
-   setShowDeleteConfirmation(true);
-   setShowOptions(false)
+    setShowDeleteConfirmation(true);
+    setShowOptions(false);
   };
+
   const confirmDelete = () => {
     removeTodo(item.id);
     setShowDeleteConfirmation(false);
   };
+
   let buttonText = "Assign";
 
   const handleAssign = () => {
-    
-
     switch (taskStatus) {
-        case "pending":
-            buttonText = "Assign";
-            break;
-        case "completed":
-            buttonText = "Completed";
-            break;
-        case "progress":
-            buttonText = "In Progress";
-            break;
-        case "deployed":
-            buttonText = "Deployed";
-            break;
-        case "deferred":
-            buttonText = "Deferred";
-            break;
-        default:
-            break;
+      case "pending":
+        buttonText = "Assign";
+        break;
+      case "completed":
+        buttonText = "Completed";
+        break;
+      case "progress":
+        buttonText = "In Progress";
+        break;
+      case "deployed":
+        buttonText = "Deployed";
+        break;
+      case "deferred":
+        buttonText = "Deferred";
+        break;
+      default:
+        break;
     }
 
     console.log("Assigning task with status:", taskStatus);
     console.log("Button text:", buttonText);
-};
-
+  };
 
   const handleStatusChange = (newStatus) => {
     setTaskStatus(newStatus);
@@ -70,6 +69,13 @@ const TodoItem = (props) => {
         <div>
           <p className="mb-1">{item.description}</p>
         </div>
+        {/* Display completed by date */}
+        {item.completedBy && (
+          <div className="mb-1">
+            <span className="fw-semibold">Due: </span>
+            <span>{item.completedBy}</span>
+          </div>
+        )}
         <div className="d-flex justify-content-between">
           <span className="fw-semibold">@{item.assignee}</span>
           <div className="position-relative">
@@ -96,14 +102,10 @@ const TodoItem = (props) => {
               {buttonText}
           </button>
         </div>
-        {/* <div>
-          <button type="button" className="btnColor text-white border border-0 px-4 mt-3 rounded-2 assign">Assign</button>
-        </div> */}
         {showEditModal && (
           <EditTask item={item} handleClose={() => setShowEditModal(false)} showEditModal={showEditModal} handleStatusChange={handleStatusChange} />
         )}
-         {/* Confirmation modal for delete */}
-         {showDeleteConfirmation && (
+        {showDeleteConfirmation && (
           <DeleteTask
             item={item}
             message="Do You Wish to Delete Task"
@@ -122,4 +124,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(TodoItem);
-

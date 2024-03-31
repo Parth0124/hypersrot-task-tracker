@@ -6,23 +6,26 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 .modal-body{
-  background-color: rgb(224, 222, 222);
+  background-color: #BED7DC; /* Changed background color */
 }
+
 .modal-body input, .modal-body textarea, .modal-body select{
   background-color: rgb(212, 211, 211);
 }
+
 .moreBtn{
   background-color: lightgrey;
   width: 100px;
 }
+
 .container .row .col .card .cards{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -30,25 +33,28 @@ code {
   gap: 8px;
   grid-auto-rows: 180px;
 }
+
 .cards p{
   width: 150px;
   font-size: 10px;
   text-align: justify;
 }
+
 .cards .priority, .cards .assign {
   font-size: 10px;
 }
+
 .btnColor{
   background-color:rgb(37, 97, 143);
-
 }
+
 .dhnfcr{
   background-color: #9a9999;
 }
+
 @media screen and (max-width: 768px){
   .container .cards{
    overflow-x: auto;
    overflow: scroll;
   }
 }
-

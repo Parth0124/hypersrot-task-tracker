@@ -14,6 +14,7 @@ const AddTask = ({ addTodo, handleClose, showModal }) => {
   const [priority, setPriority] = useState("");
   const [team, setTeam] = useState("");
   const [assignee, setAssignee] = useState("");
+  const [completedBy, setCompletedBy] = useState(""); // New state for "completed by" date
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,6 +30,7 @@ const AddTask = ({ addTodo, handleClose, showModal }) => {
         status: "pending",
         completed: false,
         startDate: startDate,
+        completedBy: completedBy, // Include completed by date
       });
       handleClose();
       // Clear form fields
@@ -37,6 +39,7 @@ const AddTask = ({ addTodo, handleClose, showModal }) => {
       setPriority("");
       setTeam("");
       setAssignee("");
+      setCompletedBy("");
     }
   };
 
@@ -76,6 +79,13 @@ const AddTask = ({ addTodo, handleClose, showModal }) => {
               <div className="col-sm-9">
                 <input type="text" className="form-control border border-secondary-subtle border-2" id="assignees" name='assignees'
                 value={assignee} onChange={(e) => setAssignee(e.target.value)}/>
+              </div>
+            </div>
+            <div className="row mb-3">
+              <label htmlFor="completedBy" className="col-sm-3 col-form-label fw-semibold">Completed By: </label>
+              <div className="col-sm-9">
+                <input type="date" className="form-control border border-secondary-subtle border-2" id="completedBy" name='completedBy'
+                value={completedBy} onChange={(e) => setCompletedBy(e.target.value)} />
               </div>
             </div>
             <div className="row mb-3 d-flex flex-row">
