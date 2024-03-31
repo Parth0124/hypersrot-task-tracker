@@ -82,7 +82,7 @@ const AddTask = ({ addTodo, handleClose, showModal }) => {
               </div>
             </div>
             <div className="row mb-3">
-              <label htmlFor="completedBy" className="col-sm-3 col-form-label fw-semibold">Due Date: </label>
+              <label htmlFor="completedBy" className="col-sm-3 col-form-label fw-semibold">Due: </label>
               <div className="col-sm-9">
                 <input type="date" className="form-control border border-secondary-subtle border-2" id="completedBy" name='completedBy'
                 value={completedBy} onChange={(e) => setCompletedBy(e.target.value)} />
