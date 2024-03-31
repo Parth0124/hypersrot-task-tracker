@@ -93,7 +93,7 @@ const AddTask = ({ addTodo, handleClose, showModal }) => {
               <div className="col-sm-3">
                 <select className="form-select border border-secondary-subtle border-2" id="priority" name='priority'
                 value={priority} onChange={(e) => setPriority(e.target.value)}>
-                  <option>P1</option>
+                  <option>Select</option>
                   <option value="P0">P0</option>
                   <option value="P1">P1</option>
                   <option value="P2">P2</option>
