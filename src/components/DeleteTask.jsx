@@ -17,8 +17,8 @@ const DeleteTask = (props) => {
                     <h5> {item.title} </h5>
                 </div>
                 <div className="d-flex gap-4">
-                    <button type="button" className="border border-0 text-white btnColor px-5 rounded-1" onClick={onConfirm}>Yes</button>
-                    <button type="button" className="border border-0 text-white btnColor px-5 rounded-1" onClick={onCancel}>No</button>
+                    <button type="button" className="border border-0 text-white btnColor px-5 rounded-1 btn btn-danger" onClick={onConfirm}>Yes</button>
+                    <button type="button" className="border border-0 text-white btnColor px-5 rounded-1 btn btn-success" onClick={onCancel}>No</button>
                 </div>
             </div>
            </div>

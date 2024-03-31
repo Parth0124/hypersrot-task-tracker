@@ -101,8 +101,8 @@ const AddTask = ({ addTodo, handleClose, showModal }) => {
               </div>
             </div>
             <div className="row d-flex justify-content-end gap-3">
-              <button type="button" className="btnColor w-25 border border-0 rounded-1 text-white" onClick={handleClose}>Close</button>
-              <button type="submit" className="btnColor w-25 border border-0 rounded-1 text-white" >Save</button>
+              <button type="button" className="btnColor w-25 border border-0 rounded-1 text-white btn btn-dark" onClick={handleClose}>Close</button>
+              <button type="submit" className="btnColor w-25 border border-0 rounded-1 text-white btn btn-dark" >Save</button>
             </div>
           </form>
         </div>

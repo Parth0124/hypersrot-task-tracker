@@ -1,7 +1,5 @@
-
-
 import React, { useState } from "react";
-import AddTask from "./AddTask";
+import AddTask from "../components/AddTask";
 import DisplayTodos from "./DisplayTodos";
 
 const Todos = () => {
@@ -46,7 +44,7 @@ const Todos = () => {
               </div>
               {/* Add New Task Button */}
               <div className="d-none d-sm-none d-block d-lg-block">
-                <button type='button' className='btnColor rounded-1 border border-0 text-white fw-semibold px-5' onClick={handleAddTask}>
+                <button type='button' className='btnColor rounded-1 border border-0 text-white fw-semibold px-5 btn btn-dark' onClick={handleAddTask}>
                   Add New Task
                 </button>
               </div>
