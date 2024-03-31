@@ -9,7 +9,6 @@ const TodoItem = (props) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [taskStatus, setTaskStatus] = useState(props.item.status);
-  const [completedByDate, setCompletedByDate] = useState(""); // New state for completed by date
 
   const { item, removeTodo } = props;
 

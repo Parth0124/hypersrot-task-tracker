@@ -6,6 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f0f0; /* Light grey background */
 }
 
 code {
@@ -14,15 +15,15 @@ code {
 }
 
 .modal-body{
-  background-color: #BED7DC; /* Changed background color */
+  background-color: #bed7dc; /* Light blue background */
 }
 
 .modal-body input, .modal-body textarea, .modal-body select{
-  background-color: rgb(212, 211, 211);
+  background-color: #d4d3d3; /* Light grey background for input elements */
 }
 
 .moreBtn{
-  background-color: lightgrey;
+  background-color: #a8a8a8; /* Dark grey background for more button */
   width: 100px;
 }
 
@@ -45,11 +46,11 @@ code {
 }
 
 .btnColor{
-  background-color:rgb(37, 97, 143);
+  background-color: #000; /* Black background for buttons */
 }
 
 .dhnfcr{
-  background-color: #9a9999;
+  background-color: #9a9999; /* Dark grey background for dhnfcr class */
 }
 
 @media screen and (max-width: 768px){

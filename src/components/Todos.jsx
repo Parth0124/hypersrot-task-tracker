@@ -8,7 +8,7 @@ const Todos = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState(""); // Step 1: State for search query
   const [priorityFilter, setPriorityFilter] = useState("all"); // Step 1: State for priority filter
-  const [dateRangeFilter, setDateRangeFilter] = useState("");
+  const [dateRangeFilter] = useState("");
 
   const handleAddTask = () => {
     setShowModal(true);
@@ -24,10 +24,6 @@ const Todos = () => {
 
   const handlePriorityFilterChange = (e) => {
     setPriorityFilter(e.target.value);
-  };
-
-  const handleDateRangeFilterChange = (e) => {
-    setDateRangeFilter(e.target.value);
   };
 
   return (
@@ -47,8 +43,6 @@ const Todos = () => {
                     <option value="P1">P1</option>
                     <option value="P2">P2</option>
                   </select>
-                  <input type="date" name="dateRange" id="dateRange" placeholder="MM/DD/YYYY-MM/DD/YYYY" className='outline-0 border border-0 rounded-2 px-lg-3 mx-sm-1 text-secondary' value={dateRangeFilter} onChange={handleDateRangeFilterChange}/>
-                 
               </div>
               {/* Add New Task Button */}
               <div className="d-none d-sm-none d-block d-lg-block">
